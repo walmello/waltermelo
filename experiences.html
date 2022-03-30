@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .menu-hamburguer {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            cursor: pointer;
+        }
+
+        .menu-bar {
+            background-color: black;
+            height: 6px;
+            margin: 6px;
+            width: 40px;
+            border-radius: 6px;
+            transition: all 0.4s;
+        }
+
+        .menu-bar.menu-bar.bar-3 {
+            width: 20px;
+        }
+
+        .menu-hamburguer.open .menu-bar.bar-1 {
+            transform: translateY(18px) rotateZ(45deg);
+        }
+
+        .menu-hamburguer.open .menu-bar.bar-2 {
+            transform: rotateZ(-45deg);
+        }
+
+        .menu-hamburguer.open .menu-bar.bar-3 {
+            transform: translateY(-15px);
+            opacity: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="menu-hamburguer">
+        <div class="menu-bar bar-1"></div>
+        <div class="menu-bar bar-2"></div>
+        <div class="menu-bar bar-3"></div>
+    </div>
+
+    <script>
+        const menu = document.querySelector('.menu-hamburguer')
+        const isMenuOpen = () => menu.classList.contains('open')
+        menu.onclick = () => {
+            if(isMenuOpen()){
+                menu.classList.remove('open')
+            } else {
+                menu.classList.add('open')
+            }
+        }
+    </script>
+</body>
+</html>

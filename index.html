@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Walter Melo - Designer and Developer</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <img src="logo.svg" alt="logo">
+        <div class="menu-hamburguer">
+            <div class="menu-bar bar-1"></div>
+            <div class="menu-bar bar-2"></div>
+            <div class="menu-bar bar-3"></div>
+        </div>
+    </nav>
+    <section class="flex">
+        <div class="sidenav">
+            <img src="left.svg" alt="">
+        </div>
+        <div class="hero">
+            <img src="myphoto.png" style="padding: var(--size_5);" alt="">
+            <div>
+                <h1>Hi, my name is <span class="gradient-text">Walter Melo</span></h1>
+                <div class="type-container"><h2>
+                    I'm a something here
+                </h2></div>    
+            </div>
+        </div>
+        <div class="sidenav">
+            <img src="right.svg" alt="">
+        </div>
+    </section>
+    <script>
+        $$ = query => document.querySelector(query);
+        
+        const typewriter = [
+            "I'm a UI Developer",
+            "I'm a Front End Designer",
+            "I'm a UX Engineer",
+            "I'm a Creative Problem Solver"
+        ]
+
+        let counter = 0
+
+        function changeTypewriterWord(){
+            const word = typewriter[counter % typewriter.length]
+            $$('.type-container').innerHTML = `<h3>${word}</h3>`
+            counter++
+        }
+
+        changeTypewriterWord()
+        setInterval(() => {
+            changeTypewriterWord()
+        },4000)
+
+        const cursor = $$('.cursor')
+
+        const moveCursor = (e)=> {
+            const mouseY = e.clientY - (50 / 2);
+            const mouseX = e.clientX - (50 / 2);
+            
+            cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+        }
+
+        window.addEventListener('mousemove', moveCursor)
+
+        document.addEventListener("mouseleave", (event) => {  
+            if (event.clientY <= 0 || event.clientX <= 0 || (event.clientX >= window.innerWidth || event.clientY >= window.innerHeight)) {  
+                cursor.style.display = `none`;
+            }  
+        });
+
+        document.addEventListener("mouseenter", (event) => {  
+            cursor.style.display = `flex`;
+        });
+
+        const menu = document.querySelector('.menu-hamburguer')
+        const isMenuOpen = () => menu.classList.contains('open')
+        menu.onclick = () => {
+            if(isMenuOpen()){
+                menu.classList.remove('open')
+            } else {
+                menu.classList.add('open')
+            }
+        }
+        
+        
+    </script>
+</body>
+</html>
